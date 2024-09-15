@@ -31,8 +31,8 @@ if __name__ == "__main__":
     
     
     # ファイルパスと抽出したい列番号を指定
-    file_path = "modules\csv_load\partworkquiz_two_option.csv"
-    column_indices = [0,1]
+    file_path = "data\partworkquiz_two_option_100limited_div4.csv"
+    column_indices = [0,1,2]
     
     
     
