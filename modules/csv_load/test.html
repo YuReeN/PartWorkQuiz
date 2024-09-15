@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランダムデータ表示</title>
+</head>
+<body>
+    <h1>ランダムなタイトルを表示</h1>
+    <button id="load-btn">ランダムな行を表示</button>
+    <div id="result"></div>
+
+    <script src="test.js"></script>
+    <script>
+        document.getElementById('load-btn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * data.length);
+            const randomRow = data[randomIndex];
+            document.getElementById('result').textContent = `選ばれたデータ: ${randomRow.join(', ')}`;
+        });
+    </script>
+</body>
+</html>
