@@ -1,41 +1,52 @@
 html {
-    font-size: 10px;
-    font-family: 'Open Sans', sans-serif;
+  background-color: #a0ce90;
+}
+
+body {
+  width: 70vw;
+  margin: 0 auto;
+  background-color: #D9F2D0;
+  padding: 0 20px 20px 20px;
+  border: 5px solid black;
+}
+
+
+/* 各セクションのデフォルトスタイル */
+.Screen {
+  display: none; /* デフォルトではすべて非表示 */
+}
+
+/* 表示するセクションに付与するクラス */
+.active {
+  display: block; /* activeクラスがついたセクションだけ表示 */
+}
+
+
+.number {
+  font-size: 6vw; /* ビューポートの幅に応じてフォントサイズを変更 */
+  margin: 20px;
+}
+
+.button-container {
+  display: flex;           /* 横並びにするためにFlexboxを使用 */
+  justify-content: center; /* ボタンを中央揃え */
+  gap: 2vw;                /* ボタンの間にビューポートに基づく余白を追加 */
+}
+
+button {
+  font-size: 3vw;          /* ボタンのフォントサイズをウィンドウ幅に応じて調整 */
+  padding: 2vw 4vw;        /* ボタンのサイズもビューポートに応じて変更 */
+  max-width: 100%;         /* ボタンがウィンドウ幅を超えないようにする */
+  box-sizing: border-box;  /* パディングやボーダーを含めたボックスサイズ計算 */
+}
+
+@media (max-width: 600px) {
+  .button-container {
+      flex-direction: column; /* ウィンドウ幅が小さい場合、ボタンを縦に並べる */
   }
-  
-  
-  h1 {
-    font-size: 60px;
-    text-align: center;
+
+  button {
+      width: 80%; /* スマホなど小さい画面ではボタン幅を広げる */
+      margin-bottom: 10px;
   }
-  
-  p, li {
-    font-size: 16px;
-    line-height: 2;
-    letter-spacing: 1px;
-  }
-  
-  
-  html {
-    background-color: #00539F;
-  }
-  
-  body {
-    width: 600px;
-    margin: 0 auto;
-    background-color: #FF9500;
-    padding: 0 20px 20px 20px;
-    border: 5px solid black;
-  }
-  
-  h1 {
-    margin: 0;
-    padding: 20px 0;
-    color: #00539F;
-    text-shadow: 3px 3px 1px black;
-  }
-  
-  img {
-    display: block;
-    margin: 0 auto;
-  }
+}

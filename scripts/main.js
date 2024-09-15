@@ -1,38 +1,44 @@
-// Image switcher code
+// 画面の要素を取得
+const TitleScreen = document.getElementById('TitleScreen');
+const GameScreen = document.getElementById('GameScreen');
+const JudgeScreen = document.getElementById('JudgeScreen');
+const ResultScreen = document.getElementById('ResultScreen');
 
-let myImage = document.querySelector('img');
+// ボタンの要素を取得
+const StartButton = document.getElementById('StartButton');
+const DeAgostiniButton = document.getElementById('DeAgostiniButton');
+const HachetteButton = document.getElementById('HachetteButton');
+const NextQuestionButton = document.getElementById('NextQuestionButton');
+const BackToTitleButton = document.getElementById('BackToTitleButton');
 
-myImage.onclick = function() {
-  let mySrc = myImage.getAttribute('src');
-  if(mySrc === 'images/firefox-icon.png') {
-    myImage.setAttribute ('src','images/firefox2.png');
-  } else {
-    myImage.setAttribute ('src','images/firefox-icon.png');
-  }
-}
 
-// Personalized welcome message code
 
-let myButton = document.querySelector('button');
-let myHeading = document.querySelector('h1');
+// クリックイベントをそれぞれのボタンに設定
+StartButton.addEventListener('click', function() {
+    showScreen(GameScreen);
+});
+DeAgostiniButton.addEventListener('click', function() {
+    showScreen(JudgeScreen);
+});
+HachetteButton.addEventListener('click', function() {
+    showScreen(JudgeScreen);
+});
+NextQuestionButton.addEventListener('click', function() {
+    showScreen(ResultScreen);
+});
 
-function setUserName() {
-  let myName = prompt('Please enter your name.');
-  if(!myName) {
-    setUserName();
-  } else {
-    localStorage.setItem('name', myName);
-    myHeading.innerHTML = 'Mozilla is cool, ' + myName;
-  }
-}
+BackToTitleButton.addEventListener('click', function() {
+    showScreen(TitleScreen);
+})
 
-if(!localStorage.getItem('name')) {
-  setUserName();
-} else {
-  let storedName = localStorage.getItem('name');
-  myHeading.innerHTML = 'Mozilla is cool, ' + storedName;
-}
+// セクションを表示する関数
+function showScreen(screen) {
+    // すべてのセクションを非表示にする
+    TitleScreen.classList.remove('active');
+    GameScreen.classList.remove('active');
+    JudgeScreen.classList.remove('active');
+    ResultScreen.classList.remove('active');
 
-myButton.onclick = function() {
-  setUserName();
+    // 選択したセクションを表示する
+    screen.classList.add('active');
 }

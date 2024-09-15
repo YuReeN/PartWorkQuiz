@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同一画面でページ遷移のように見せる</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <nav>
+        <button id="homeButton">ホーム</button>
+        <button id="aboutButton">アバウト</button>
+        <button id="contactButton">コンタクト</button>
+    </nav>
+
+    <div id="content">
+        <!-- ホーム画面 -->
+        <div id="homeSection" class="section active">
+            <h1>ホーム</h1>
+            <p>ここはホームセクションです。</p>
+        </div>
+
+        <!-- アバウト画面 -->
+        <div id="aboutSection" class="section">
+            <h1>アバウト</h1>
+            <p>ここはアバウトセクションです。</p>
+        </div>
+
+        <!-- コンタクト画面 -->
+        <div id="contactSection" class="section">
+            <h1>コンタクト</h1>
+            <p>ここはコンタクトセクションです。</p>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+
+</body>
+</html>

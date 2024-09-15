@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>My test page</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-    <link href="styles/style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <h1>Mozilla is cool</h1>
-    <img src="images/firefox-icon.png" alt="The Firefox logo: a flaming fox surrounding the Earth.">
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分冊百科クイズ</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div id="Screens">
+        <!-- ホーム画面 -->
+        <div id="TitleScreen" class="Screen active">
+            <h1>分冊百科クイズ</h1>
+            <p>ここはホームセクションです。</p>
+            <button id="StartButton">start</button>
 
-    <p>At Mozilla, we’re a global community of</p>
+        </div>
 
-    <ul> <!-- changed to list in the tutorial -->
-      <li>technologists</li>
-      <li>thinkers</li>
-      <li>builders</li>
-    </ul>
+        <div id="GameScreen" class="Screen">
+            <h1>ゲーム画面</h1>
+            <p>ここはアバウトセクションです。</p>
+            <button id="DeAgostiniButton">DeAgostini</button>
+            <button id="HachetteButton">Hachette</button>
 
-    <p>working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web. We believe this act of human collaboration across an open platform is essential to individual growth and our collective future.</p>
+        </div>
 
-    <p>Read the <a href="https://www.mozilla.org/en-US/about/manifesto/">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.</p>
-  <button>Change user</button>
-  <script src="scripts/main.js"></script>
-  </body>
+        <!-- アバウト画面 -->
+        <div id="JudgeScreen" class="Screen">
+            <h1>正誤判定</h1>
+            <p>ここはアバウトセクションです。</p>
+            <button id="NextQuestionButton">next</button>
+        </div>
+
+        <!-- コンタクト画面 -->
+        <div id="ResultScreen" class="Screen">
+            <h1>結果発表</h1>
+            <p>ここはコンタクトセクションです。</p>
+            <button id="BackToTitleButton">タイトル画面へ</button>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+
+</body>
 </html>
