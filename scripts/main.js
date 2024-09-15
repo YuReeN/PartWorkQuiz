@@ -1,3 +1,6 @@
+let num_of_question = 10;
+let n = 1;
+
 // 画面の要素を取得
 const TitleScreen = document.getElementById('TitleScreen');
 const GameScreen = document.getElementById('GameScreen');
@@ -11,11 +14,14 @@ const HachetteButton = document.getElementById('HachetteButton');
 const NextQuestionButton = document.getElementById('NextQuestionButton');
 const BackToTitleButton = document.getElementById('BackToTitleButton');
 
+const questionNumberElements = document.querySelectorAll('.QuestionNumber');
+
 
 
 // クリックイベントをそれぞれのボタンに設定
 StartButton.addEventListener('click', function() {
     showScreen(GameScreen);
+    n = 1;
 });
 DeAgostiniButton.addEventListener('click', function() {
     showScreen(JudgeScreen);
@@ -25,11 +31,21 @@ HachetteButton.addEventListener('click', function() {
 });
 NextQuestionButton.addEventListener('click', function() {
     showScreen(ResultScreen);
+    n +=1;
+    if(n > num_of_question){
+      showScreen(ResultScreen)
+    }else{
+      showScreen(GameScreen)
+      updateQuestionNumber()
+    }
 });
 
 BackToTitleButton.addEventListener('click', function() {
     showScreen(TitleScreen);
 })
+
+
+
 
 // セクションを表示する関数
 function showScreen(screen) {
@@ -41,4 +57,10 @@ function showScreen(screen) {
 
     // 選択したセクションを表示する
     screen.classList.add('active');
+}
+
+function updateQuestionNumber() {
+  questionNumberElements.forEach(function(element) {
+      element.textContent = n;
+  });
 }
