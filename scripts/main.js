@@ -1,8 +1,10 @@
-let num_of_question = 10;
+let amout_of_question = 10;
 let current_num_of_question = 1;
 let answerBinary = 0;
 let answerValue;
 let num_of_correct = 0;
+let gamediffeculty = 0;
+let gamemode = 'TwoChoice';
 
 // 画面の要素を取得
 const TitleScreen = document.getElementById('TitleScreen');
@@ -22,64 +24,81 @@ const AnswerSign = document.getElementById('AnswerSign')
 const NumOfCorrect = document.querySelectorAll('.NumOfCorrect')
 
 
+if(gamemode == 'TwoChoice'){
+        
+    // クリックイベントをそれぞれのボタンに設定
+    StartButton.addEventListener('click', function() {
+        const NumOfQuestion = document.getElementById("NumOfQuestion");
+        amout_of_question = parseInt(NumOfQuestion.value, 10);
+
+        const GameDifficulty = document.getElementById("GameDifficulty");
+        gamediffeculty = parseInt(GameDifficulty.value, 10);
+
+        showScreen(GameScreen);
+        current_num_of_question = 1;
+        updateQuestionNumber()
+
+        // 問題のランダム表示
+        randomQustioner();
+    });
 
 
-// クリックイベントをそれぞれのボタンに設定
-StartButton.addEventListener('click', function() {
-    showScreen(GameScreen);
-    current_num_of_question = 1;
-    updateQuestionNumber()
-
-    // 問題のランダム表示
-    randomQustioner();
-});
-
-
-DeAgostiniButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
-    judgeAnswer('DeAgostini');
-    num_of_correct += answerBinary;
-    NumOfCorrect.forEach(function(element){
-        element.textContent = `${num_of_correct}`
-    })
-});
-
-
-HachetteButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
-    judgeAnswer('Hachette');
-    num_of_correct += answerBinary;
-    NumOfCorrect.forEach(function(element){
-        element.textContent = `${num_of_correct}`
-    })
-});
-
-
-NextQuestionButton.addEventListener('click', function() {
-    showScreen(ResultScreen);
-    current_num_of_question +=1;
-    if(current_num_of_question > num_of_question){
-      showScreen(ResultScreen)
-    }else{
-      showScreen(GameScreen)
-      updateQuestionNumber()
-
-    //問題のランダム表示
-    randomQustioner();
-
-    }
-});
-
-BackToTitleButton.forEach(BackToTitleButton =>{
-    BackToTitleButton.addEventListener('click', function() {
-        showScreen(TitleScreen);
-        num_of_correct = 0;
+    DeAgostiniButton.addEventListener('click', function() {
+        showScreen(JudgeScreen);
+        judgeAnswer('DeAgostini');
+        num_of_correct += answerBinary;
         NumOfCorrect.forEach(function(element){
-            element.textContent = `${0}`
+            element.textContent = `${num_of_correct}`
         })
-})
+    });
 
-})
+
+    HachetteButton.addEventListener('click', function() {
+        showScreen(JudgeScreen);
+        judgeAnswer('Hachette');
+        num_of_correct += answerBinary;
+        NumOfCorrect.forEach(function(element){
+            element.textContent = `${num_of_correct}`
+        })
+    });
+
+
+    NextQuestionButton.addEventListener('click', function() {
+        showScreen(ResultScreen);
+        current_num_of_question +=1;
+        if(current_num_of_question > amout_of_question){
+        showScreen(ResultScreen)
+        }else{
+        showScreen(GameScreen)
+        updateQuestionNumber()
+
+        //問題のランダム表示
+        randomQustioner();
+
+        }
+    });
+
+    BackToTitleButton.forEach(BackToTitleButton =>{
+        BackToTitleButton.addEventListener('click', function() {
+            if (window.confirm('タイトルに戻る？')){
+                showScreen(TitleScreen);
+                num_of_correct = 0;
+                NumOfCorrect.forEach(function(element){
+                    element.textContent = `${0}`
+                })
+            }else{
+                // DO NOTHING
+            }
+        })
+    })
+
+}else{
+    
+}
+
+
+
+
 
 
 
@@ -123,9 +142,14 @@ function randomQustioner(){
     document.querySelectorAll('.QuestionTitle').forEach(function(element){
         element.textContent = `題名: ${selectedValue1}`;
     })
-    document.querySelectorAll('.QuestionDescription').forEach(function(element){
-        element.textContent = `説明: ${selectedValue2}`;
-    })
+    if(gamediffeculty == 1){
+        document.querySelectorAll('.QuestionDescription').forEach(function(element){
+            element.textContent = `説明: ${selectedValue2}`;
+        })
+    }else{
+        document.querySelectorAll('.QuestionDescription').forEach(function(element){
+            element.textContent = ``;
+    })}
 }
 
 

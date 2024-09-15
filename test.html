@@ -3,82 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クイズアプリ</title>
+    <title>選択肢の例</title>
+    <style>
+        .container {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="quizContainer">
-        <p id="question">質問がここに表示されます</p>
-        <button id="option1"></button>
-        <button id="option2"></button>
-        <button id="option3"></button>
-        <button id="option4"></button>
-        <button id="nextButton">次の問題</button>
+    <div class="container">
+        <h1>数値選択</h1>
+        <label for="numberSelect">数値を選択してください:</label>
+        <select id="numberSelect">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </select>
+        <button id="submitButton">選択を表示</button>
+        <p id="result"></p>
     </div>
 
     <script>
-        let questions = [];
-        let currentQuestionIndex = 0;
+        document.getElementById('submitButton').addEventListener('click', function() {
+            // select要素から選択された値を取得
+            const selectedValue = document.getElementById('numberSelect').value;
+            
+            // 取得した値を表示する
+            document.getElementById('result').textContent = '選択された数値は: ' + selectedValue;
 
-        // CSVファイルを読み込む
-        function loadCSV() {
-            fetch('partworkquiz_two_option.csv')
-                .then(response => response.text())
-                .then(data => {
-                    parseCSV(data);
-                    showQuestion();
-                });
-        }
+            // 選択された数値を数値型に変換して使用する例
+            const numericValue = parseInt(selectedValue, 10);
+            console.log('数値型に変換された値:', numericValue);
 
-        // CSVデータをパースする
-        function parseCSV(data) {
-            const lines = data.split('\n');
-            const headers = lines[0].split(',');
-
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',');
-                if (values.length > 1) { // 空行を避ける
-                    const question = {
-                        questionText: values[0],
-                        options: values.slice(1, 5),
-                        correctOption: values[5]
-                    };
-                    questions.push(question);
-                }
-            }
-        }
-
-        // ランダムな質問を表示する
-        function showQuestion() {
-            if (questions.length === 0) return;
-
-            currentQuestionIndex = Math.floor(Math.random() * questions.length);
-            const question = questions[currentQuestionIndex];
-
-            document.getElementById('question').textContent = question.questionText;
-            const options = document.querySelectorAll('#quizContainer button');
-
-            options.forEach((button, index) => {
-                button.textContent = question.options[index];
-                button.onclick = () => checkAnswer(button.textContent, question.correctOption);
-            });
-        }
-
-        // 答えをチェックする
-        function checkAnswer(selectedOption, correctOption) {
-            if (selectedOption === correctOption) {
-                alert('正解です！');
-            } else {
-                alert('不正解です。');
-            }
-        }
-
-        // 次の問題に進む
-        document.getElementById('nextButton').addEventListener('click', showQuestion);
-
-        // 初期データの読み込み
-        loadCSV();
+            // 数値に基づく処理をここに追加できます
+        });
     </script>
-
 </body>
 </html>
