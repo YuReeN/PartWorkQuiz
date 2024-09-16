@@ -24,8 +24,6 @@ const AnswerSign = document.getElementById('AnswerSign')
 const NumOfCorrect = document.querySelectorAll('.NumOfCorrect')
 
 
-
-
 // クリックイベントをそれぞれのボタンに設定
 StartButton.addEventListener('click', function() {
     const NumOfQuestion = document.getElementById("NumOfQuestion");
@@ -52,12 +50,26 @@ StartButton.addEventListener('click', function() {
     }else if(gamemode=='TicTacToe'){
         randomQustionerForTicTacToe();
     }
-
-    
 });
 
+BackToTitleButton.forEach(BackToTitleButton =>{
+    BackToTitleButton.addEventListener('click', function() {
+        if (window.confirm('タイトルに戻る？')){
+            showScreen(TitleScreen);
+            num_of_correct = 0;
+            NumOfCorrect.forEach(function(element){
+                element.textContent = `${0}`
+            })
+        }else{
+            // DO NOTHING
+        }
+    })
+})
 
 
+
+
+// Two Choice
 DeAgostiniButton.addEventListener('click', function() {
     showScreen(JudgeScreen);
     judgeAnswer('DeAgostini');
@@ -93,19 +105,17 @@ NextQuestionButton.addEventListener('click', function() {
     }
 });
 
-BackToTitleButton.forEach(BackToTitleButton =>{
-    BackToTitleButton.addEventListener('click', function() {
-        if (window.confirm('タイトルに戻る？')){
-            showScreen(TitleScreen);
-            num_of_correct = 0;
-            NumOfCorrect.forEach(function(element){
-                element.textContent = `${0}`
-            })
-        }else{
-            // DO NOTHING
-        }
-    })
-})
+
+
+// Price Compararison
+
+
+
+
+
+
+
+// Publishing Frequency
 
 
 
@@ -115,14 +125,22 @@ BackToTitleButton.forEach(BackToTitleButton =>{
 
 
 
+
+
+
+
+
+
+// Functions
 
 // セクションを表示する関数
 function showScreen(screen) {
     // すべてのセクションを非表示にする
     TitleScreen.classList.remove('active');
+    ResultScreen.classList.remove('active');
+
     GameScreen.classList.remove('active');
     JudgeScreen.classList.remove('active');
-    ResultScreen.classList.remove('active');
 
     // 選択したセクションを表示する
     screen.classList.add('active');
@@ -166,19 +184,6 @@ function randomQustionerForTwoChoice(){
 
 
 function randomQustionerForPriceComparison(){
-    const randomRightIndex = Math.floor(Math.random() * data.length);
-    const randomRightRow = data[randomRightIndex];
-    const selectedValueRight1 = randomRightRow[1];
-    const selectedValueRight2 = randomRightRow[2];
-}
-
-
-function randomQustionerForPablishFreqency(){
-    const randomIndex = Math.floor(Math.random() * data.length);
-    const randomRow = data[randomIndex];
-    const selectedValue1 = randomRow[1];
-    const selectedValue2 = randomRow[2];
-
     if (window.confirm('未実装です')){
         showScreen(TitleScreen);
         num_of_correct = 0;
@@ -188,6 +193,31 @@ function randomQustionerForPablishFreqency(){
     }else{
         // DO NOTHING
     }
+
+    const randomRightIndex = Math.floor(Math.random() * dataForPriceComparison.length);
+    const randomRightRow = dataForPriceComparison[randomRightIndex];
+    const selectedValueRight1 = randomRightRow[1];
+    const selectedValueRight2 = randomRightRow[2];
+}
+
+
+function randomQustionerForPablishFreqency(){
+    if (window.confirm('未実装です')){
+        showScreen(TitleScreen);
+        num_of_correct = 0;
+        NumOfCorrect.forEach(function(element){
+            element.textContent = `${0}`
+        })
+    }else{
+        // DO NOTHING
+    }
+
+    const randomIndex = Math.floor(Math.random() * dataForPablishFreqency.length);
+    const randomRow = dataForPablishFreqency[randomIndex];
+    const selectedValue1 = randomRow[1];
+    const selectedValue2 = randomRow[2];
+
+
 }
 
 function randomQustionerForTicTacToe(){
