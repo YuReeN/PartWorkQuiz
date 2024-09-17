@@ -40,8 +40,10 @@
             </div>
         </div>
 
-        <div id="GameScreen" class="Screen">
-            <h1>ゲーム画面</h1>
+
+        <!-- Game screen for two choice -->
+        <div id="GameScreenForTwoChoice" class="Screen">
+            <h1>二択</h1>
             <div class="QuestionTitle"></div>
             <div class="QuestionDescription"></div>
             <button id="DeAgostiniButton">DeAgostini</button>
@@ -49,11 +51,60 @@
             <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
             <button class="BackToTitleButton">タイトル画面へ</button>
-
         </div>
 
-        <div id="JudgeScreen" class="Screen">
-            <h1>正誤判定</h1>
+        <!-- game screen for Price Compararison -->
+        <div id="GameScreenForPriceComparison" class="Screen"></div>
+            <h1>価格比較</h1>
+            <div id="rightrow">
+                <div class="QuestionTitle_R"></div>
+                <div class="QuestionDescription_R"></div>
+            </div>
+            <div id="leftrow">
+                <div class="QuestionTitle_L"></div>
+                <div class="QuestionDescription_L"></div>
+            </div>
+            <button id="morethanButton">morethan</button>
+            <button id="equalButton">equal</button>
+            <button id="lessthanButton">lessthan</button>
+            <!-- 共通 -->
+            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>正解数：<span class="NumOfCorrect">0</span></p>
+            <button class="BackToTitleButton">タイトル画面へ</button>
+        </div>
+
+        <!-- game screen for Publishing Frequency -->
+        <div id="GameScreenForPublishFrequency" class="Screen"></div>
+            <h1>刊行頻度</h1>
+            <div class="QuestionTitle"></div>
+            <div class="QuestionDescription"></div>
+            <button id="ButtonMonthly">monthly</button>
+            <button id="ButtonBiweekly">biweekly</button>
+            <button id="ButtonWeekly">weekly</button>
+            <button id="ButtonTwoInWeek">twoinweek</button>
+            <!-- 共通 -->
+            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>正解数：<span class="NumOfCorrect">0</span></p>
+            <button class="BackToTitleButton">タイトル画面へ</button>
+        </div>
+
+        <!-- GameScreenForForTicTacTo -->
+        <div id="GameScreenForForTicTacTo" class="Screen"></div>
+            <h1>まるばつクイズ</h1>
+            <div class="QuestionTitle"></div>
+            <div class="QuestionDescription"></div>
+
+
+            <!-- 共通 -->
+            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>正解数：<span class="NumOfCorrect">0</span></p>
+            <button class="BackToTitleButton">タイトル画面へ</button>
+        </div>
+
+
+        <!-- common -->
+        <div id="JudgeScreen" class="Screen"></div>
+            <h1>二択正誤判定</h1>
             <div class="QuestionTitle"></div>
             <div class="QuestionDescription"></div>
             <button id="NextQuestionButton">next</button>
@@ -63,12 +114,22 @@
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
-        <div id="ResultScreen" class="Screen">
+
+        <div id="ResultScreen" class="Screen"></div>
             <h1>結果発表</h1>
             <p>あなたの成績は…</p>
             <button class="BackToTitleButton">タイトル画面へ</button>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
         </div>
+
+
+
+
+
+
+
+
+
     </div>
 
     <script src="scripts/main.js"></script>
