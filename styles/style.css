@@ -3,34 +3,39 @@ html {
 }
 
 body {
-  width: 70vw;
+  font-family: Arial, sans-serif;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 70vw;
   background-color: #D9F2D0;
-  padding: 0 20px 20px 20px;
-  border: 5px solid black;
+  flex-direction: column;
 }
 
-
-/* 各セクションのデフォルトスタイル */
 .Screen {
-  display: none; /* デフォルトではすべて非表示 */
+  display: none;
+  width: 60vw;
+  text-align: center;
 }
 
-/* 表示するセクションに付与するクラス */
+select {
+  font-size: 15px;
+  /* padding: 3px */
+  cursor: pointer;
+  text-align: center;
+}
+
 .active {
-  display: block; /* activeクラスがついたセクションだけ表示 */
+  display: block;
 }
 
-
-.number {
-  font-size: 6vw; /* ビューポートの幅に応じてフォントサイズを変更 */
-  margin: 20px;
-}
-
-.button-container {
-  display: flex;           /* 横並びにするためにFlexboxを使用 */
-  justify-content: center; /* ボタンを中央揃え */
-  gap: 2vw;                /* ボタンの間にビューポートに基づく余白を追加 */
+/* Specific styling for different elements can be added here */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 button {
@@ -40,13 +45,45 @@ button {
   box-sizing: border-box;  /* パディングやボーダーを含めたボックスサイズ計算 */
 }
 
-@media (max-width: 600px) {
-  .button-container {
-      flex-direction: column; /* ウィンドウ幅が小さい場合、ボタンを縦に並べる */
-  }
+.QuestionTitle, .QuestionTitle_L, .QuestionTitle_R {
+  font-size: 24px;
+  font-weight: bold;
+}
 
-  button {
-      width: 80%; /* スマホなど小さい画面ではボタン幅を広げる */
-      margin-bottom: 10px;
+.QuestionDescription, .QuestionDescription_L, .QuestionDescription_R {
+  margin-bottom: 10px;
+}
+
+#AnswerSign {
+  font-size: 30px;
+  color: red;
+}
+
+.QuestionNumber, .NumOfCorrect, #AnswerText {
+  font-size: 25px;
+}
+
+.TotalQuestionNumber{
+  font-size: 25px;
+}
+
+.PriceComparisonRows {
+  display: flex;
+}
+
+.rightrow, .leftrow{
+  width: 40vw;
+  padding: 20vw;
+  box-sizing: border-box;
+}
+
+/* ... and so on for other elements */
+
+/* Responsive design */
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .container {
+    flex-direction: column;
   }
+  /* ... other responsive adjustments */
 }

@@ -10,8 +10,11 @@
     <div id="Screens">
         <div id="TitleScreen" class="Screen active">
             <h1>分冊百科クイズ</h1>
-            <p>Part Work Quiz</p>
-            <button id="StartButton">開始</button>
+            <h2>Part Work Quiz</h2>
+            <div class="">
+                <button id="StartButton">開始</button>
+            </div>
+            
             <div class="container">
                 <label for="NumOfQuestion">出題数:</label>
                 <select id="NumOfQuestion">
@@ -34,7 +37,7 @@
                 <select id="GameMode">
                     <option value="TwoChoice">二択</option>
                     <option value="PriceComparison">価格比較</option>
-                    <option value="PablishFreqency">刊行頻度</option>
+                    <option value="PublishFreqency">刊行頻度</option>
                     <option value="TicTacToe">まるばつ</option>
                 </select>
             </div>
@@ -48,88 +51,83 @@
             <div class="QuestionDescription"></div>
             <button id="DeAgostiniButton">DeAgostini</button>
             <button id="HachetteButton">Hachette</button>
-            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
         <!-- game screen for Price Compararison -->
-        <div id="GameScreenForPriceComparison" class="Screen"></div>
+        <div id="GameScreenForPriceComparison" class="Screen">
             <h1>価格比較</h1>
-            <div id="rightrow">
-                <div class="QuestionTitle_R"></div>
-                <div class="QuestionDescription_R"></div>
+            <div class="PriceComparisonRows">
+                <div id="rightrow">
+                    <div class="QuestionTitle_R"></div>
+                    <div class="QuestionDescription_R"></div>
+                </div>
+                <div id="leftrow">
+                    <div class="QuestionTitle_L"></div>
+                    <div class="QuestionDescription_L"></div>
+                </div>
             </div>
-            <div id="leftrow">
-                <div class="QuestionTitle_L"></div>
-                <div class="QuestionDescription_L"></div>
-            </div>
-            <button id="morethanButton">morethan</button>
-            <button id="equalButton">equal</button>
-            <button id="lessthanButton">lessthan</button>
+
+            <button id="morethanButton">＞</button>
+            <button id="equalButton">＝</button>
+            <button id="lessthanButton">＜</button>
             <!-- 共通 -->
-            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
         <!-- game screen for Publishing Frequency -->
-        <div id="GameScreenForPublishFrequency" class="Screen"></div>
+        <div id="GameScreenForPublishFrequency" class="Screen">
             <h1>刊行頻度</h1>
             <div class="QuestionTitle"></div>
             <div class="QuestionDescription"></div>
-            <button id="ButtonMonthly">monthly</button>
-            <button id="ButtonBiweekly">biweekly</button>
-            <button id="ButtonWeekly">weekly</button>
-            <button id="ButtonTwoInWeek">twoinweek</button>
+            <button id="ButtonMonthly">月刊</button>
+            <button id="ButtonBiweekly">隔週刊</button>
+            <button id="ButtonWeekly">週刊</button>
+            <button id="ButtonTwoInWeek">週二回</button>
             <!-- 共通 -->
-            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
-        <!-- GameScreenForForTicTacTo -->
-        <div id="GameScreenForForTicTacTo" class="Screen"></div>
+        <!-- GameScreenForForTicTacToe -->
+        <div id="GameScreenForForTicTacToe" class="Screen">
             <h1>まるばつクイズ</h1>
             <div class="QuestionTitle"></div>
             <div class="QuestionDescription"></div>
-
-
             <!-- 共通 -->
-            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
 
         <!-- common -->
-        <div id="JudgeScreen" class="Screen"></div>
-            <h1>二択正誤判定</h1>
+        <div id="JudgeScreen" class="Screen">
+            <h1>正誤判定</h1>
             <div class="QuestionTitle"></div>
             <div class="QuestionDescription"></div>
-            <button id="NextQuestionButton">next</button>
-            <p id="AnswerSign">answer</p>
-            <p>現在の質問番号: <span class="QuestionNumber">1</span></p>
+            <p id="AnswerSign">error</p>
+            <p>正解は:<span id="AnswerText">answer</span></p>
+            <button id="NextQuestionButton">次の問題</button>
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
+            
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
 
-        <div id="ResultScreen" class="Screen"></div>
+        <div id="ResultScreen" class="Screen">
             <h1>結果発表</h1>
-            <p>あなたの成績は…</p>
-            <button class="BackToTitleButton">タイトル画面へ</button>
+            <p>あなたの成績は<span class = "TotalQuestionNumber"></span>問中…</p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>
+            <button class="BackToTitleButton">タイトル画面へ</button>
+            
         </div>
-
-
-
-
-
-
-
-
-
     </div>
 
     <script src="scripts/main.js"></script>

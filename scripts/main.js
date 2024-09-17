@@ -1,4 +1,4 @@
-let amout_of_question = 10;
+let amount_of_question = 10;
 let current_num_of_question = 1;
 let answerBinary = 0;
 let answerValue = '';
@@ -11,7 +11,7 @@ const TitleScreen = document.getElementById('TitleScreen');
 const GameScreenForTwoChoice = document.getElementById('GameScreenForTwoChoice');
 const GameScreenForPriceComparison = document.getElementById('GameScreenForPriceComparison');
 const GameScreenForPublishFrequency = document.getElementById('GameScreenForPublishFrequency');
-const GameScreenForForTicTacTo = document.getElementById('GameScreenForForTicTacTo');
+const GameScreenForForTicTacToe = document.getElementById('GameScreenForForTicTacToe');
 const JudgeScreen = document.getElementById('JudgeScreen');
 const ResultScreen = document.getElementById('ResultScreen');
 
@@ -35,13 +35,15 @@ const BackToTitleButton = document.querySelectorAll('.BackToTitleButton');
 
 const questionNumberElements = document.querySelectorAll('.QuestionNumber');
 const AnswerSign = document.getElementById('AnswerSign')
+const AnswerText = document.getElementById('AnswerText')
 const NumOfCorrect = document.querySelectorAll('.NumOfCorrect')
+const TotalQuestionNumber = document.querySelectorAll('.TotalQuestionNumber')
 
 
 // common buttons
 StartButton.addEventListener('click', function() {
     const NumOfQuestion = document.getElementById("NumOfQuestion");
-    amout_of_question = parseInt(NumOfQuestion.value, 10);
+    amount_of_question = parseInt(NumOfQuestion.value, 10);
 
     const GameDifficulty = document.getElementById("GameDifficulty");
     gamediffeculty = parseInt(GameDifficulty.value, 10);
@@ -52,17 +54,25 @@ StartButton.addEventListener('click', function() {
     current_num_of_question = 1;
     updateQuestionNumber()
 
-    console.log(gamemode)
+    document.querySelectorAll('.TotalQuestionNumber').forEach(function(element){
+        element.textContent = amount_of_question;
+    })
 
+    console.log(gamemode)
+    console.log(amount_of_question)
+    console.log(gamediffeculty)
+
+    randomQustioner()
     if(gamemode == 'TwoChoice'){
         showScreen(GameScreenForTwoChoice);
     }else if(gamemode=='PriceComparison'){
         showScreen(GameScreenForPriceComparison)
-    }else if(gamemode=='PablishFreqency'){
+    }else if(gamemode=='PublishFreqency'){
         showScreen(GameScreenForPublishFrequency)
     }else if(gamemode=='TicTacToe'){
-        showScreen(GameScreenForForTicTacTo)
+        showScreen(GameScreenForForTicTacToe)
     }
+
 });
 
 BackToTitleButton.forEach(BackToTitleButton =>{
@@ -81,7 +91,7 @@ BackToTitleButton.forEach(BackToTitleButton =>{
 
 NextQuestionButton.addEventListener('click', function() {
     current_num_of_question +=1;
-    if(current_num_of_question > amout_of_question){
+    if(current_num_of_question > amount_of_question){
         showScreen(ResultScreen)
     }else{
         updateQuestionNumber()
@@ -91,10 +101,10 @@ NextQuestionButton.addEventListener('click', function() {
             showScreen(GameScreenForTwoChoice);
         }else if(gamemode=='PriceComparison'){
             showScreen(GameScreenForPriceComparison)
-        }else if(gamemode=='PablishFreqency'){
+        }else if(gamemode=='PublishFreqency'){
             showScreen(GameScreenForPublishFrequency)
         }else if(gamemode=='TicTacToe'){
-            showScreen(GameScreenForForTicTacTo)
+            showScreen(GameScreenForForTicTacToe)
         }
     }
 });
@@ -160,26 +170,19 @@ ButtonTwoInWeek.addEventListener('click', function() {
 });
 
 // tic tac toe
-
 // nothing
 
-
-
-
-
 // Functions
-
-// セクションを表示する関数
 function showScreen(screen) {
+    console.log(screen)
     // すべてのセクションを非表示にする
     TitleScreen.classList.remove('active');
     ResultScreen.classList.remove('active');
-    GameScreenForForTicTacTo.classList.remove('active');
+    GameScreenForForTicTacToe.classList.remove('active');
     GameScreenForPriceComparison.classList.remove('active');
     GameScreenForPublishFrequency.classList.remove('active');
     GameScreenForTwoChoice.classList.remove('active');
     JudgeScreen.classList.remove('active');
-
     // 選択したセクションを表示する
     screen.classList.add('active');
 }
@@ -190,7 +193,6 @@ function updateQuestionNumber() {
   });
 }
 
-
 function writeNumOfCorrect(){
     num_of_correct += answerBinary;
     NumOfCorrect.forEach(function(element){
@@ -198,24 +200,19 @@ function writeNumOfCorrect(){
     })
 }
 
-
 function judgeAnswer(answerInput){
     if (answerValue == answerInput){
         answerBinary = 1;
+        AnswerSign.textContent = '正解';
+        AnswerText.textContent = answerValue;
     }else{
         answerBinary = 0;
+        AnswerSign.textContent = 'まちがい';
+        AnswerText.textContent = answerValue;
     }
-    AnswerSign.textContent = `${answerBinary}`;
 }
 
-
-
 function randomQustioner(){
-    const randomIndex = Math.floor(Math.random() * dataForPablishFreqency.length);
-    const randomRow = dataForPablishFreqency[randomIndex];
-    const selectedValue1 = randomRow[1];
-    const selectedValue2 = randomRow[2];
-
     if(gamemode == 'TwoChoice'){
         const randomIndex = Math.floor(Math.random() * dataForTwoChoice.length);
         const randomRow = dataForTwoChoice[randomIndex];
@@ -273,11 +270,11 @@ function randomQustioner(){
             });
         }
 
-        if (numPrice_R > numPrice_L){
+        if (numPrice_R < numPrice_L){
             answerValue = '>'
         }else if(numPrice_R == numPrice_L){
             answerValue = '='
-        }else if(numPrice_R < numPrice_L){
+        }else if(numPrice_R > numPrice_L){
             answerValue = '<'
         }
 
@@ -311,90 +308,6 @@ function randomQustioner(){
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-// function randomQustionerForTwoChoice(){
-//     const randomIndex = Math.floor(Math.random() * dataForTwoChoice.length);
-//     const randomRow = dataForTwoChoice[randomIndex];
-//     const selectedValue1 = randomRow[1];
-//     const selectedValue2 = randomRow[2];
-//     answerValue = randomRow[0];
-//     document.querySelectorAll('.QuestionTitle').forEach(function(element){
-//         element.textContent = `題名: ${selectedValue1}`;
-//     })
-//     if(gamediffeculty == 1){
-//         document.querySelectorAll('.QuestionDescription').forEach(function(element){
-//             element.textContent = `説明: ${selectedValue2}`;
-//         })
-//     }else{
-//         document.querySelectorAll('.QuestionDescription').forEach(function(element){
-//             element.textContent = ``;
-//     })}
-// }
-
-
-// function randomQustionerForPriceComparison(){
-//     if (window.confirm('未実装です')){
-//         showScreen(TitleScreen);
-//         num_of_correct = 0;
-//         NumOfCorrect.forEach(function(element){
-//             element.textContent = `${0}`
-//         })
-//     }else{
-//         // DO NOTHING
-//     }
-
-//     const random_RIndex = Math.floor(Math.random() * dataForPriceComparison.length);
-//     const random_RRow = dataForPriceComparison[random_RIndex];
-//     const selectedValue_R1 = random_RRow[1];
-//     const selectedValue_R2 = random_RRow[2];
-// }
-
-
-// function randomQustionerForPablishFreqency(){
-//     if (window.confirm('未実装です')){
-//         showScreen(TitleScreen);
-//         num_of_correct = 0;
-//         NumOfCorrect.forEach(function(element){
-//             element.textContent = `${0}`
-//         })
-//     }else{
-//         // DO NOTHING
-//     }
-
-
-
-
-// }
-
-// function randomQustionerForTicTacToe(){
-//     if (window.confirm('未実装です')){
-//         showScreen(TitleScreen);
-//         num_of_correct = 0;
-//         NumOfCorrect.forEach(function(element){
-//             element.textContent = `${0}`
-//         })
-//     }else{
-//         // DO NOTHING
-//     }
-// }
-
-// function randomQustionerFor(){
-
-// }
-
-
-
-
-
 
 
 

@@ -1,44 +1,89 @@
 html {
-    background-color: #a0ce90;
-  }
-  
-  body {
-    width: 70vw;
-    margin: 0 auto;
-    background-color: #D9F2D0;
-    padding: 0 20px 20px 20px;
-    border: 5px solid black;
-  }
-  
-  
-  
-  
-  .number {
-    font-size: 6vw; /* ビューポートの幅に応じてフォントサイズを変更 */
-    margin: 20px;
-  }
-  
+  background-color: #a0ce90;
+}
+
+body {
+  width: 70vw;
+  margin: 0 auto;
+  background-color: #D9F2D0;
+  padding: 0 20px 20px 20px;
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 縦方向の中央 */
+  align-items: center; /* 横方向の中央 */
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#StartButton {
+  padding: 20px 40px;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px; /* ボタンとセレクトボックスの間にスペースを作る */
+}
+
+.container {
+  margin-bottom: 10px; /* 各セレクトボックス間のスペース */
+}
+
+select {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* 各セクションのデフォルトスタイル */
+.Screen {
+  display: none; /* デフォルトではすべて非表示 */
+}
+
+/* 表示するセクションに付与するクラス */
+.active {
+  display: block; /* activeクラスがついたセクションだけ表示 */
+}
+
+
+.number {
+  font-size: 6vw; /* ビューポートの幅に応じてフォントサイズを変更 */
+  margin: 20px;
+}
+
+
+
+.button {
+  font-size: 3vw;          /* ボタンのフォントサイズをウィンドウ幅に応じて調整 */
+  padding: 2vw 4vw;        /* ボタンのサイズもビューポートに応じて変更 */
+  max-width: 100%;         /* ボタンがウィンドウ幅を超えないようにする */
+  box-sizing: border-box;  /* パディングやボーダーを含めたボックスサイズ計算 */
+  display: flex;           /* 横並びにするためにFlexboxを使用 */
+  justify-content: center; /* ボタンを中央揃え */
+  gap: 2vw;                /* ボタンの間にビューポートに基づく余白を追加 */
+}
+
+@media (max-width: 600px) {
   .button-container {
-    display: flex;           /* 横並びにするためにFlexboxを使用 */
-    justify-content: center; /* ボタンを中央揃え */
-    gap: 2vw;                /* ボタンの間にビューポートに基づく余白を追加 */
+      flex-direction: column; /* ウィンドウ幅が小さい場合、ボタンを縦に並べる */
   }
-  
+
   button {
-    font-size: 3vw;          /* ボタンのフォントサイズをウィンドウ幅に応じて調整 */
-    padding: 2vw 4vw;        /* ボタンのサイズもビューポートに応じて変更 */
-    max-width: 100%;         /* ボタンがウィンドウ幅を超えないようにする */
-    box-sizing: border-box;  /* パディングやボーダーを含めたボックスサイズ計算 */
+      width: 80%; /* スマホなど小さい画面ではボタン幅を広げる */
+      margin-bottom: 10px;
   }
-  
-  @media (max-width: 600px) {
-    .button-container {
-        flex-direction: column; /* ウィンドウ幅が小さい場合、ボタンを縦に並べる */
-    }
-  
-    button {
-        width: 80%; /* スマホなど小さい画面ではボタン幅を広げる */
-        margin-bottom: 10px;
-    }
-  }
-  
+}
+
+.PriceComparisonRows {
+  display: flex;
+}
+
+.rightrow, .leftrow{
+  width: 40vw;
+  padding: 20vw;
+  box-sizing: border-box;
+}
