@@ -41,6 +41,8 @@
                     <option value="TicTacToe">まるばつ</option>
                 </select>
             </div>
+            <p>累計正解数：<span id="TotalNumberOfCorrect">0</span></p>
+
         </div>
 
 
@@ -107,18 +109,12 @@
 
 
         <!-- common -->
-        <div id="JudgeScreen" class="Screen">
-            <h1>正誤判定</h1>
-            <div class="QuestionTitle"></div>
-            <div class="QuestionDescription"></div>
+        <div class="overlay">
             <p id="AnswerSign">error</p>
             <p>正解は:<span id="AnswerText">answer</span></p>
             <button id="NextQuestionButton">次の問題</button>
-            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
-            <p>正解数：<span class="NumOfCorrect">0</span></p>
-            
-            <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
+
 
 
         <div id="ResultScreen" class="Screen">

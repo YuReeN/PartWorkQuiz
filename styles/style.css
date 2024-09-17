@@ -9,22 +9,33 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 70vw;
+  width: 80vw;
   background-color: #D9F2D0;
   flex-direction: column;
 }
 
 .Screen {
   display: none;
-  width: 60vw;
+  width: 70vw;
   text-align: center;
+  z-index: 1;
 }
 
-select {
-  font-size: 15px;
-  /* padding: 3px */
-  cursor: pointer;
+.overlay {
+  position: absolute;
+  top: 20vh;
+  left: 10vw;
+  width: 80vw;
+  height: 60vh;
+  background-color: rgba(0, 0, 0, 0.7); /* 黒色、70%透過 */
+  display: none;
   text-align: center;
+  z-index: 20000;
+}
+
+.overlay p {
+  color: white;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* 最小1rem、推奨2vw、最大1.5rem */
 }
 
 .active {
@@ -35,55 +46,93 @@ select {
 .container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  justify-content: left;
+  margin-top: 2vh;
+  align-items: center;
+}
+
+select {
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* フォントサイズを画面幅に応じて調整 */
+  cursor: pointer;
+  text-align: center;
+  width: 20vw;
 }
 
 button {
-  font-size: 3vw;          /* ボタンのフォントサイズをウィンドウ幅に応じて調整 */
-  padding: 2vw 4vw;        /* ボタンのサイズもビューポートに応じて変更 */
+  font-size: clamp(1rem, 3vw, 2rem); /* ボタンのフォントサイズをウィンドウ幅に応じて調整 */
   max-width: 100%;         /* ボタンがウィンドウ幅を超えないようにする */
-  box-sizing: border-box;  /* パディングやボーダーを含めたボックスサイズ計算 */
+  cursor: grab;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem); /* 最小1.5rem、最大3rem */
+}
+
+h2 {
+  font-size: clamp(1.2rem, 3vw, 2.5rem); /* 最小1.2rem、最大2.5rem */
 }
 
 .QuestionTitle, .QuestionTitle_L, .QuestionTitle_R {
-  font-size: 24px;
+  font-size: clamp(1.2rem, 3vw, 2.5rem); /* 見出しに相応しいレスポンシブサイズ */
   font-weight: bold;
 }
 
 .QuestionDescription, .QuestionDescription_L, .QuestionDescription_R {
-  margin-bottom: 10px;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* 説明文のフォントサイズ */
 }
 
 #AnswerSign {
-  font-size: 30px;
+  margin-top: 13vh;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* 最小1.5rem、最大3rem */
   color: red;
 }
 
 .QuestionNumber, .NumOfCorrect, #AnswerText {
-  font-size: 25px;
+  font-size: clamp(2rem, 3vw, 3rem); /* 最小1rem、最大1.5rem */
 }
 
-.TotalQuestionNumber{
-  font-size: 25px;
+.TotalQuestionNumber {
+  font-size: clamp(1rem, 1vw, 1.5rem); /* 合計問題数のフォントサイズ */
 }
 
 .PriceComparisonRows {
   display: flex;
 }
 
-.rightrow, .leftrow{
+.rightrow, .leftrow {
   width: 40vw;
   padding: 20vw;
   box-sizing: border-box;
 }
 
-/* ... and so on for other elements */
-
 /* Responsive design */
-@media (max-width: 768px) {
-  /* Adjust styles for smaller screens */
+@media (max-width: 200px) {
   .container {
     flex-direction: column;
   }
-  /* ... other responsive adjustments */
+
+  button {
+    font-size: clamp(1rem, 3vw, 1.5rem); /* モバイル向けにボタンサイズを調整 */
+    padding: 2vw 8vw; /* モバイル向けのパディング */
+  }
+
+  h1 {
+    font-size: clamp(1.2rem, 4vw, 2.5rem); /* モバイル向けに見出しのサイズを調整 */
+  }
+
+  h2 {
+    font-size: clamp(1rem, 3vw, 2rem); /* モバイル向けにサイズを調整 */
+  }
+
+  .QuestionTitle, .QuestionTitle_L, .QuestionTitle_R {
+    font-size: clamp(1rem, 4vw, 2rem); /* モバイル向けにサイズ調整 */
+  }
+
+  .QuestionNumber, .NumOfCorrect, #AnswerText {
+    font-size: clamp(0.8rem, 1vw, 1rem); /* モバイル向けに調整 */
+  }
+
+  #AnswerSign {
+    font-size: clamp(1rem, 6vw, 2.5rem); /* モバイル向けのサイン表示 */
+  }
 }

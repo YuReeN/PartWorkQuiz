@@ -5,6 +5,7 @@ let answerValue = '';
 let num_of_correct = 0;
 let gamediffeculty = 0;
 let gamemode = 'TwoChoice';
+let total_number_of_correct = 0;
 
 // 画面の要素を取得
 const TitleScreen = document.getElementById('TitleScreen');
@@ -38,7 +39,7 @@ const AnswerSign = document.getElementById('AnswerSign')
 const AnswerText = document.getElementById('AnswerText')
 const NumOfCorrect = document.querySelectorAll('.NumOfCorrect')
 const TotalQuestionNumber = document.querySelectorAll('.TotalQuestionNumber')
-
+const TotalNumberOfCorrect = document.getElementById('TotalNumberOfCorrect')
 
 // common buttons
 StartButton.addEventListener('click', function() {
@@ -62,7 +63,7 @@ StartButton.addEventListener('click', function() {
     console.log(amount_of_question)
     console.log(gamediffeculty)
 
-    randomQustioner()
+    
     if(gamemode == 'TwoChoice'){
         showScreen(GameScreenForTwoChoice);
     }else if(gamemode=='PriceComparison'){
@@ -73,12 +74,16 @@ StartButton.addEventListener('click', function() {
         showScreen(GameScreenForForTicTacToe)
     }
 
+    randomQustioner()
+
 });
 
 BackToTitleButton.forEach(BackToTitleButton =>{
     BackToTitleButton.addEventListener('click', function() {
         if (window.confirm('タイトルに戻る？')){
             showScreen(TitleScreen);
+            total_number_of_correct += num_of_correct;
+            TotalNumberOfCorrect.textContent = total_number_of_correct;
             num_of_correct = 0;
             NumOfCorrect.forEach(function(element){
                 element.textContent = `${0}`
@@ -109,16 +114,16 @@ NextQuestionButton.addEventListener('click', function() {
     }
 });
 
-
+const overlay = document.querySelector('.overlay');
 // Two Choice
 DeAgostiniButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('DeAgostini');
     writeNumOfCorrect();
 });
 
 HachetteButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('Hachette');
     writeNumOfCorrect();
 });
@@ -126,19 +131,19 @@ HachetteButton.addEventListener('click', function() {
 
 // Price comparison
 morethanButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('>');
     writeNumOfCorrect();
 });
 
 equalButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('=');
     writeNumOfCorrect();
 });
 
 lessthanButton.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('<');
     writeNumOfCorrect();
 });
@@ -146,25 +151,25 @@ lessthanButton.addEventListener('click', function() {
 
 // Publish Frequency
 ButtonMonthly.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('月刊');
     writeNumOfCorrect();
 });
 
 ButtonBiweekly.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('隔週刊');
     writeNumOfCorrect();
 });
 
 ButtonWeekly.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('週刊');
     writeNumOfCorrect();
 });
 
 ButtonTwoInWeek.addEventListener('click', function() {
-    showScreen(JudgeScreen);
+    overlay.classList.add('active');
     judgeAnswer('週二回');
     writeNumOfCorrect();
 });
@@ -182,7 +187,7 @@ function showScreen(screen) {
     GameScreenForPriceComparison.classList.remove('active');
     GameScreenForPublishFrequency.classList.remove('active');
     GameScreenForTwoChoice.classList.remove('active');
-    JudgeScreen.classList.remove('active');
+    overlay.classList.remove('active');
     // 選択したセクションを表示する
     screen.classList.add('active');
 }
@@ -305,6 +310,7 @@ function randomQustioner(){
             })
         }else{
             // DO NOTHING
+            showScreen(TitleScreen);
         }
     }
 }
