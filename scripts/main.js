@@ -3,9 +3,11 @@ let current_num_of_question = 1;
 let answerBinary = 0;
 let answerValue = '';
 let num_of_correct = 0;
-let gamediffeculty = 0;
+let gamedifficulty = 0;
 let gamemode = 'TwoChoice';
 let total_number_of_correct = 0;
+let price_L = 0;
+let price_R = 0;
 
 // 画面の要素を取得
 const TitleScreen = document.getElementById('TitleScreen');
@@ -52,7 +54,7 @@ StartButton.addEventListener('click', function() {
     amount_of_question = parseInt(NumOfQuestion.value, 10);
 
     const GameDifficulty = document.getElementById("GameDifficulty");
-    gamediffeculty = parseInt(GameDifficulty.value, 10);
+    gamedifficulty = parseInt(GameDifficulty.value, 10);
 
     const GameMode = document.getElementById("GameMode");
     gamemode = GameMode.value;
@@ -66,7 +68,7 @@ StartButton.addEventListener('click', function() {
 
     console.log(gamemode)
     console.log(amount_of_question)
-    console.log(gamediffeculty)
+    console.log(gamedifficulty)
 
     
     if(gamemode == 'TwoChoice'){
@@ -236,15 +238,28 @@ function writeNumOfCorrect(){
 }
 
 function judgeAnswer(answerInput){
-    if (answerValue == answerInput){
-        answerBinary = 1;
-        AnswerSign.textContent = '正解';
-        AnswerText.textContent = answerValue;
+    if (gamemode == 'PriceComparisonFirst' || gamemode == 'PriceComparisonNormal'){
+        if (answerValue == answerInput){
+            answerBinary = 1;
+            AnswerSign.textContent = '正解';
+            AnswerText.textContent = price_L +"円" +"  "+ answerValue +"  "+ price_R +"円";
+        }else{
+            answerBinary = 0;
+            AnswerSign.textContent = 'まちがい';
+            AnswerText.textContent = price_L +"円" +"  "+ answerValue +"  "+ price_R +"円";
+        }
     }else{
-        answerBinary = 0;
-        AnswerSign.textContent = 'まちがい';
-        AnswerText.textContent = answerValue;
+        if (answerValue == answerInput){
+            answerBinary = 1;
+            AnswerSign.textContent = '正解';
+            AnswerText.textContent = answerValue;
+        }else{
+            answerBinary = 0;
+            AnswerSign.textContent = 'まちがい';
+            AnswerText.textContent = answerValue;
+        }
     }
+
 }
 
 function randomQustioner(){
@@ -257,7 +272,7 @@ function randomQustioner(){
         document.querySelectorAll('.QuestionTitle').forEach(function(element){
             element.textContent = selectedValue1;
         })
-        if(gamediffeculty == 1){
+        if(gamedifficulty == 0){
             document.querySelectorAll('.QuestionDescription').forEach(function(element){
                 element.textContent = selectedValue2;
             })
@@ -272,6 +287,7 @@ function randomQustioner(){
         const randomRow_R = dataForPriceComparison[randomIndex_R];
         const selectedPrice_R = randomRow_R[3];
         const numPrice_R = Number(selectedPrice_R.replace(/,/g, ''));
+        price_R = numPrice_R
         const selectedValue1_R = randomRow_R[2];
         const selectedValue2_R = randomRow_R[5];
         document.querySelectorAll('.QuestionTitle_R').forEach(function(element){
@@ -283,6 +299,7 @@ function randomQustioner(){
         const randomRow_L = dataForPriceComparison[randomIndex_L];
         const selectedPrice_L = randomRow_L[3];
         const numPrice_L = Number(selectedPrice_L.replace(/,/g, ''));
+        price_L = numPrice_L
         const selectedValue1_L = randomRow_L[2];
         const selectedValue2_L= randomRow_L[5];
         document.querySelectorAll('.QuestionTitle_L').forEach(function(element){
@@ -290,7 +307,7 @@ function randomQustioner(){
         });
         console.log(numPrice_L)
         console.log(numPrice_R)
-        if(gamediffeculty == 1){
+        if(gamedifficulty == 0){
             document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
                 element.textContent = selectedValue2_R;
             });
@@ -320,6 +337,7 @@ function randomQustioner(){
         const randomRow_R = dataForPriceComparison[randomIndex_R];
         const selectedPrice_R = randomRow_R[4];
         const numPrice_R = Number(selectedPrice_R.replace(/,/g, ''));
+        price_R = numPrice_R
         const selectedValue1_R = randomRow_R[2];
         const selectedValue2_R = randomRow_R[5];
         document.querySelectorAll('.QuestionTitle_R').forEach(function(element){
@@ -331,6 +349,7 @@ function randomQustioner(){
         const randomRow_L = dataForPriceComparison[randomIndex_L];
         const selectedPrice_L = randomRow_L[4];
         const numPrice_L = Number(selectedPrice_L.replace(/,/g, ''));
+        price_L = numPrice_L
         const selectedValue1_L = randomRow_L[2];
         const selectedValue2_L= randomRow_L[5];
         document.querySelectorAll('.QuestionTitle_L').forEach(function(element){
@@ -340,7 +359,7 @@ function randomQustioner(){
         console.log(numPrice_L)
         console.log(numPrice_R)
 
-        if(gamediffeculty == 1){
+        if(gamedifficulty == 0){
             document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
                 element.textContent = selectedValue2_R;
             });
@@ -372,7 +391,7 @@ function randomQustioner(){
         document.querySelectorAll('.QuestionTitle').forEach(function(element){
             element.textContent = selectedValue1;
         })
-        if(gamediffeculty == 1){
+        if(gamedifficulty == 0){
             document.querySelectorAll('.QuestionDescription').forEach(function(element){
                 element.textContent = selectedValue2;
             })
