@@ -9,14 +9,14 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 80vw;
+  width: 90vw;
   background-color: #D9F2D0;
   flex-direction: column;
 }
 
 .Screen {
   display: none;
-  width: 70vw;
+  width: 80vw;
   text-align: center;
   z-index: 1;
 }
@@ -24,8 +24,8 @@ body {
 .overlay {
   position: absolute;
   top: 20vh;
-  left: 10vw;
-  width: 80vw;
+  left: 5vw;
+  width: 90vw;
   height: 60vh;
   background-color: rgba(0, 0, 0, 0.7); /* 黒色、70%透過 */
   display: none;
@@ -78,7 +78,7 @@ h2 {
 }
 
 .QuestionDescription, .QuestionDescription_L, .QuestionDescription_R {
-  font-size: clamp(1rem, 2vw, 1.5rem); /* 説明文のフォントサイズ */
+  font-size: clamp(1rem, 1vw, 1.5rem); /* 説明文のフォントサイズ */
 }
 
 #AnswerSign {
