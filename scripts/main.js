@@ -10,7 +10,8 @@ let total_number_of_correct = 0;
 // 画面の要素を取得
 const TitleScreen = document.getElementById('TitleScreen');
 const GameScreenForTwoChoice = document.getElementById('GameScreenForTwoChoice');
-const GameScreenForPriceComparison = document.getElementById('GameScreenForPriceComparison');
+const GameScreenForPriceComparisonFirst = document.getElementById('GameScreenForPriceComparisonFirst');
+const GameScreenForPriceComparisonNormal = document.getElementById('GameScreenForPriceComparisonNormal');
 const GameScreenForPublishFrequency = document.getElementById('GameScreenForPublishFrequency');
 const GameScreenForForTicTacToe = document.getElementById('GameScreenForForTicTacToe');
 const JudgeScreen = document.getElementById('JudgeScreen');
@@ -25,6 +26,10 @@ const HachetteButton = document.getElementById('HachetteButton');
 const morethanButton = document.getElementById('morethanButton')
 const equalButton = document.getElementById('equalButton')
 const lessthanButton = document.getElementById('lessthanButton')
+
+const morethanButtonNormal = document.getElementById('morethanButtonNormal')
+const equalButtonNormal = document.getElementById('equalButtonNormal')
+const lessthanButtonNormal = document.getElementById('lessthanButtonNormal')
 
 const ButtonMonthly = document.getElementById('ButtonMonthly')
 const ButtonBiweekly = document.getElementById('ButtonBiweekly')
@@ -66,8 +71,10 @@ StartButton.addEventListener('click', function() {
     
     if(gamemode == 'TwoChoice'){
         showScreen(GameScreenForTwoChoice);
-    }else if(gamemode=='PriceComparison'){
-        showScreen(GameScreenForPriceComparison)
+    }else if(gamemode=='PriceComparisonFirst'){
+        showScreen(GameScreenForPriceComparisonFirst)
+    }else if(gamemode=='PriceComparisonNormal'){
+        showScreen(GameScreenForPriceComparisonNormal)
     }else if(gamemode=='PublishFreqency'){
         showScreen(GameScreenForPublishFrequency)
     }else if(gamemode=='TicTacToe'){
@@ -104,8 +111,10 @@ NextQuestionButton.addEventListener('click', function() {
         
         if(gamemode == 'TwoChoice'){
             showScreen(GameScreenForTwoChoice);
-        }else if(gamemode=='PriceComparison'){
-            showScreen(GameScreenForPriceComparison)
+        }else if(gamemode=='PriceComparisonFirst'){
+            showScreen(GameScreenForPriceComparisonFirst)
+        }else if(gamemode=='PriceComparisonNormal'){
+            showScreen(GameScreenForPriceComparisonNormal)
         }else if(gamemode=='PublishFreqency'){
             showScreen(GameScreenForPublishFrequency)
         }else if(gamemode=='TicTacToe'){
@@ -129,7 +138,7 @@ HachetteButton.addEventListener('click', function() {
 });
 
 
-// Price comparison
+// Price comparison First
 morethanButton.addEventListener('click', function() {
     overlay.classList.add('active');
     judgeAnswer('>');
@@ -143,6 +152,26 @@ equalButton.addEventListener('click', function() {
 });
 
 lessthanButton.addEventListener('click', function() {
+    overlay.classList.add('active');
+    judgeAnswer('<');
+    writeNumOfCorrect();
+});
+
+
+// price comparison normal
+morethanButtonNormal.addEventListener('click', function() {
+    overlay.classList.add('active');
+    judgeAnswer('>');
+    writeNumOfCorrect();
+});
+
+equalButtonNormal.addEventListener('click', function() {
+    overlay.classList.add('active');
+    judgeAnswer('=');
+    writeNumOfCorrect();
+});
+
+lessthanButtonNormal.addEventListener('click', function() {
     overlay.classList.add('active');
     judgeAnswer('<');
     writeNumOfCorrect();
@@ -184,7 +213,8 @@ function showScreen(screen) {
     TitleScreen.classList.remove('active');
     ResultScreen.classList.remove('active');
     GameScreenForForTicTacToe.classList.remove('active');
-    GameScreenForPriceComparison.classList.remove('active');
+    GameScreenForPriceComparisonFirst.classList.remove('active');
+    GameScreenForPriceComparisonNormal.classList.remove('active');
     GameScreenForPublishFrequency.classList.remove('active');
     GameScreenForTwoChoice.classList.remove('active');
     overlay.classList.remove('active');
@@ -225,46 +255,47 @@ function randomQustioner(){
         const selectedValue2 = randomRow[2];
         answerValue = randomRow[0];
         document.querySelectorAll('.QuestionTitle').forEach(function(element){
-            element.textContent = `題名: ${selectedValue1}`;
+            element.textContent = selectedValue1;
         })
         if(gamediffeculty == 1){
             document.querySelectorAll('.QuestionDescription').forEach(function(element){
-                element.textContent = `説明: ${selectedValue2}`;
+                element.textContent = selectedValue2;
             })
         }else{
             document.querySelectorAll('.QuestionDescription').forEach(function(element){
                 element.textContent = ``;
         })}
 
-    }else if(gamemode=='PriceComparison'){
+    }else if(gamemode=='PriceComparisonFirst'){
         // RIGHT ROW
         const randomIndex_R = Math.floor(Math.random() * dataForPriceComparison.length);
         const randomRow_R = dataForPriceComparison[randomIndex_R];
         const selectedPrice_R = randomRow_R[3];
-        const numPrice_R = Number(selectedPrice_R);
+        const numPrice_R = Number(selectedPrice_R.replace(/,/g, ''));
         const selectedValue1_R = randomRow_R[2];
         const selectedValue2_R = randomRow_R[5];
         document.querySelectorAll('.QuestionTitle_R').forEach(function(element){
-            element.textContent = `題名: ${selectedValue1_R}`;
+            element.textContent = selectedValue1_R;
         });
 
         // LEFT ROW
         const randomIndex_L = Math.floor(Math.random() * dataForPriceComparison.length);
         const randomRow_L = dataForPriceComparison[randomIndex_L];
         const selectedPrice_L = randomRow_L[3];
-        const numPrice_L = Number(selectedPrice_L);
+        const numPrice_L = Number(selectedPrice_L.replace(/,/g, ''));
         const selectedValue1_L = randomRow_L[2];
         const selectedValue2_L= randomRow_L[5];
         document.querySelectorAll('.QuestionTitle_L').forEach(function(element){
-            element.textContent = `題名: ${selectedValue1_L}`;
+            element.textContent = selectedValue1_L;
         });
-
+        console.log(numPrice_L)
+        console.log(numPrice_R)
         if(gamediffeculty == 1){
             document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
-                element.textContent = `説明: ${selectedValue2_R}`;
+                element.textContent = selectedValue2_R;
             });
             document.querySelectorAll('.QuestionDescription_L').forEach(function(element){
-                element.textContent = `説明: ${selectedValue2_L}`;
+                element.textContent = selectedValue2_L;
             });
         }else{
             document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
@@ -282,7 +313,56 @@ function randomQustioner(){
         }else if(numPrice_R > numPrice_L){
             answerValue = '<'
         }
+    
+    }else if(gamemode == 'PriceComparisonNormal'){
+        // RIGHT ROW
+        const randomIndex_R = Math.floor(Math.random() * dataForPriceComparison.length);
+        const randomRow_R = dataForPriceComparison[randomIndex_R];
+        const selectedPrice_R = randomRow_R[4];
+        const numPrice_R = Number(selectedPrice_R.replace(/,/g, ''));
+        const selectedValue1_R = randomRow_R[2];
+        const selectedValue2_R = randomRow_R[5];
+        document.querySelectorAll('.QuestionTitle_R').forEach(function(element){
+            element.textContent = selectedValue1_R;
+        });
 
+        // LEFT ROW
+        const randomIndex_L = Math.floor(Math.random() * dataForPriceComparison.length);
+        const randomRow_L = dataForPriceComparison[randomIndex_L];
+        const selectedPrice_L = randomRow_L[4];
+        const numPrice_L = Number(selectedPrice_L.replace(/,/g, ''));
+        const selectedValue1_L = randomRow_L[2];
+        const selectedValue2_L= randomRow_L[5];
+        document.querySelectorAll('.QuestionTitle_L').forEach(function(element){
+            element.textContent = selectedValue1_L;
+        });
+
+        console.log(numPrice_L)
+        console.log(numPrice_R)
+
+        if(gamediffeculty == 1){
+            document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
+                element.textContent = selectedValue2_R;
+            });
+            document.querySelectorAll('.QuestionDescription_L').forEach(function(element){
+                element.textContent = selectedValue2_L;
+            });
+        }else{
+            document.querySelectorAll('.QuestionDescription_R').forEach(function(element){
+                element.textContent = ``;
+            });
+            document.querySelectorAll('.QuestionDescription_L').forEach(function(element){
+                element.textContent = ``;
+            });
+        }
+
+        if (numPrice_R < numPrice_L){
+            answerValue = '>'
+        }else if(numPrice_R == numPrice_L){
+            answerValue = '='
+        }else if(numPrice_R > numPrice_L){
+            answerValue = '<'
+        }
     }else if(gamemode=='PublishFreqency'){
         const randomIndex = Math.floor(Math.random() * dataForPublishFreqency.length);
         const randomRow = dataForPublishFreqency[randomIndex];
@@ -290,11 +370,11 @@ function randomQustioner(){
         const selectedValue2 = randomRow[3];
         answerValue = randomRow[1];
         document.querySelectorAll('.QuestionTitle').forEach(function(element){
-            element.textContent = `題名: ${selectedValue1}`;
+            element.textContent = selectedValue1;
         })
         if(gamediffeculty == 1){
             document.querySelectorAll('.QuestionDescription').forEach(function(element){
-                element.textContent = `説明: ${selectedValue2}`;
+                element.textContent = selectedValue2;
             })
         }else{
             document.querySelectorAll('.QuestionDescription').forEach(function(element){

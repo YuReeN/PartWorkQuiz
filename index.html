@@ -36,9 +36,10 @@
                 <label for="GameMode">モード:</label>
                 <select id="GameMode">
                     <option value="TwoChoice">二択</option>
-                    <option value="PriceComparison">価格比較</option>
+                    <option value="PriceComparisonFirst">価格比較-創刊号-</option>
+                    <option value="PriceComparisonNormal">価格比較-通常回-</option>
                     <option value="PublishFreqency">刊行頻度</option>
-                    <option value="TicTacToe">まるばつ</option>
+                    <option value="TicTacToe">まるばつ（工事中）</option>
                 </select>
             </div>
             <p>累計正解数：<span id="TotalNumberOfCorrect">0</span></p>
@@ -58,14 +59,17 @@
             <button class="BackToTitleButton">タイトル画面へ</button>
         </div>
 
-        <!-- game screen for Price Compararison -->
-        <div id="GameScreenForPriceComparison" class="Screen">
-            <h1>価格比較</h1>
+        <!-- game screen for Price Compararison initial issues -->
+        <div id="GameScreenForPriceComparisonFirst" class="Screen">
+            <h1>価格比較-創刊号-</h1>
             <div class="PriceComparisonRows">
                 <div id="rightrow">
                     <div class="QuestionTitle_R"></div>
                     <div class="QuestionDescription_R"></div>
                 </div>
+                <!-- <div id="midrow">
+                    <h1> || </h1>
+                </div> -->
                 <div id="leftrow">
                     <div class="QuestionTitle_L"></div>
                     <div class="QuestionDescription_L"></div>
@@ -75,6 +79,32 @@
             <button id="morethanButton">＞</button>
             <button id="equalButton">＝</button>
             <button id="lessthanButton">＜</button>
+            <!-- 共通 -->
+            <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
+            <p>正解数：<span class="NumOfCorrect">0</span></p>
+            <button class="BackToTitleButton">タイトル画面へ</button>
+        </div>
+
+                <!-- game screen for Price Compararison Normal issues -->
+        <div id="GameScreenForPriceComparisonNormal" class="Screen">
+            <h1>価格比較-通常回-</h1>
+            <div class="PriceComparisonRows">
+                <div id="rightrow">
+                    <div class="QuestionTitle_R"></div>
+                    <div class="QuestionDescription_R"></div>
+                </div>
+                <!-- <div id="midrow">
+                    <h1> || </h1>
+                </div> -->
+                <div id="leftrow">
+                    <div class="QuestionTitle_L"></div>
+                    <div class="QuestionDescription_L"></div>
+                </div>
+            </div>
+
+            <button id="morethanButtonNormal">＞</button>
+            <button id="equalButtonNormal">＝</button>
+            <button id="lessthanButtonNormal">＜</button>
             <!-- 共通 -->
             <p>問題数: <span class="QuestionNumber">1</span> / <span class = "TotalQuestionNumber"></span></p>
             <p>正解数：<span class="NumOfCorrect">0</span></p>

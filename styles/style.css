@@ -96,13 +96,12 @@ h2 {
 }
 
 .PriceComparisonRows {
-  display: flex;
+  display: flex; /* Flexboxを使用して子要素を水平に配置 */
+  gap: 20px; /* 子要素間に20pxのスキマを設定 */
 }
 
-.rightrow, .leftrow {
-  width: 40vw;
-  padding: 20vw;
-  box-sizing: border-box;
+#rightrow, #leftrow {
+  flex: 1; /* 左右の列を均等に広げる */
 }
 
 /* Responsive design */
