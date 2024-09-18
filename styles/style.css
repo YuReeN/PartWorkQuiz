@@ -1,5 +1,5 @@
 html {
-  background-color: #a0ce90;
+  background-color: #238ce2;
 }
 
 body {
@@ -9,23 +9,29 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 90vw;
-  background-color: #D9F2D0;
+  width: 100vw;
+  background-color: #a0ce90;
   flex-direction: column;
+  background: linear-gradient(180deg, #a0ce90 0%, #D9F2D0 50%, #D9F2D0 50%, #a0ce90 100%);
 }
 
 .Screen {
-  display: none;
+  position: fixed; /* ブラウザウィンドウに対して固定 */
+  top: 0;
+  left: 10vw;
   width: 80vw;
+  height: 100vh;
+  display: none;
   text-align: center;
   z-index: 1;
+  background-color: #D9F2D0;
 }
 
 .overlay {
   position: absolute;
   top: 20vh;
-  left: 5vw;
-  width: 90vw;
+  left: 0vw;
+  width: 100vw;
   height: 60vh;
   background-color: rgba(0, 0, 0, 0.7); /* 黒色、70%透過 */
   display: none;
