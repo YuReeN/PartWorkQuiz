@@ -17,13 +17,15 @@ body {
 .Screen {
   position: fixed; /* ブラウザウィンドウに対して固定 */
   top: 0;
-  left: 10vw;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: none;
   text-align: center;
+  align-items: center;
   z-index: 1;
   background-color: #D9F2D0;
+  background: linear-gradient(90deg, #a0ce90 0%, #D9F2D0 5%, #D9F2D0 95%, #a0ce90 100%);
 }
 
 .overlay {
@@ -77,12 +79,29 @@ h2 {
   font-size: clamp(1.2rem, 3vw, 2.5rem); /* 最小1.2rem、最大2.5rem */
 }
 
-.QuestionTitle, .QuestionTitle_L, .QuestionTitle_R {
+.QuestionTitle {
+  width: 70vw; /* 幅を70vwに設定 */
+  margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
   font-size: clamp(1.2rem, 3vw, 2.5rem); /* 見出しに相応しいレスポンシブサイズ */
   font-weight: bold;
 }
 
-.QuestionDescription, .QuestionDescription_L, .QuestionDescription_R {
+.QuestionDescription {
+  width: 70vw; /* 幅を70vwに設定 */
+  margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
+  font-size: clamp(1rem, 1vw, 1.5rem); /* 説明文のフォントサイズ */
+}
+
+.QuestionTitle_L, .QuestionTitle_R {
+  width: 40vw; /* 幅を70vwに設定 */
+  margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
+  font-size: clamp(1.2rem, 3vw, 2.5rem); /* 見出しに相応しいレスポンシブサイズ */
+  font-weight: bold;
+}
+
+.QuestionDescription_L, .QuestionDescription_R {
+  width: 40vw; /* 幅を70vwに設定 */
+  margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
   font-size: clamp(1rem, 1vw, 1.5rem); /* 説明文のフォントサイズ */
 }
 

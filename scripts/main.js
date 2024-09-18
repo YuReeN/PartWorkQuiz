@@ -47,6 +47,7 @@ const AnswerText = document.getElementById('AnswerText')
 const NumOfCorrect = document.querySelectorAll('.NumOfCorrect')
 const TotalQuestionNumber = document.querySelectorAll('.TotalQuestionNumber')
 const TotalNumberOfCorrect = document.getElementById('TotalNumberOfCorrect')
+const overlay = document.querySelector('.overlay');
 
 // common buttons
 StartButton.addEventListener('click', function() {
@@ -87,6 +88,8 @@ StartButton.addEventListener('click', function() {
 
 });
 
+
+
 BackToTitleButton.forEach(BackToTitleButton =>{
     BackToTitleButton.addEventListener('click', function() {
         if (window.confirm('タイトルに戻る？')){
@@ -102,6 +105,7 @@ BackToTitleButton.forEach(BackToTitleButton =>{
         }
     })
 })
+
 
 NextQuestionButton.addEventListener('click', function() {
     current_num_of_question +=1;
@@ -125,7 +129,16 @@ NextQuestionButton.addEventListener('click', function() {
     }
 });
 
-const overlay = document.querySelector('.overlay');
+
+
+// document.addEventListener('keydown', function(event) {
+//     if(event.key === 'Enter'){
+//         NextQuestionButton.click();
+//     }
+// });
+
+
+
 // Two Choice
 DeAgostiniButton.addEventListener('click', function() {
     overlay.classList.add('active');
