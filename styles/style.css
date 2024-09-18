@@ -1,5 +1,5 @@
 html {
-  background-color: #238ce2;
+  background-color: #a0ce90;
 }
 
 body {
@@ -12,14 +12,13 @@ body {
   width: 100vw;
   background-color: #a0ce90;
   flex-direction: column;
-  background: linear-gradient(180deg, #a0ce90 0%, #D9F2D0 50%, #D9F2D0 50%, #a0ce90 100%);
 }
 
 .Screen {
   position: fixed; /* ブラウザウィンドウに対して固定 */
   top: 0;
   left: 10vw;
-  width: 80vw;
+  width: 100vw;
   height: 100vh;
   display: none;
   text-align: center;
